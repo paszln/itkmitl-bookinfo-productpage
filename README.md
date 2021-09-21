@@ -15,8 +15,8 @@ python productpage.py 9080
 # Build Docker Image for productpage service
 docker build -t productpage .
 
-# Run productpage service on port 8082
-docker run -d --name productpage -p 8082:9080 productpage
+# Run productpage service on port 8083
+docker run -d --name productpage -p 8083:9080 --link details:details --link ratings:ratings --link reviews:reviews -e 'DETAILS_HOSTNAME=http://details:9080' -e 'REVIEWS_HOSTNAME=http://reviews:9080' -e 'RATINGS_HOSTNAME=http://ratings:8080' productpage
 ```
 
 * Test with path `/health`
