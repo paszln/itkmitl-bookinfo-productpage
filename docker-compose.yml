@@ -1,0 +1,16 @@
+services:
+  productpage:
+    build: .
+    image: ghcr.io/paszln/bookinfo-productpage:dev
+    ports:
+      - "8083:9080"
+    environment:
+      DETAILS_HOSTNAME: http://details:9080
+      REVIEWS_HOSTNAME: http://reviews:9080
+      RATINGS_SERVICE: http://ratings:8080
+  ratings:
+    image: ghcr.io/paszln/bookinfo-ratings:dev
+  details:
+    image: ghcr.io/paszln/bookinfo-details:dev
+  reviews:
+    image: ghcr.io/paszln/bookinfo-reviews:dev
